@@ -2,12 +2,13 @@ package Assignment1;
 
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Course implements Serializable {
 
     private String name;
     private final String courseCode;
-    private Student[] studentsInCourse = new Student[35];
+    private List<Student> studentsInCourse;
     private Instructor courseInstructor;
     private int numberOfStudents;
     private final int maxNumberOfStudents;
@@ -32,21 +33,24 @@ public class Course implements Serializable {
 
     public Student findStudentByID(int id) {
         for(Student student: studentsInCourse) {
-            if(student.getSTUDENT_ID() == id) {
+            if(student.getID() == id) {
                 return student;
             }
         }
         return null;
     }
-    public String addStudent(Student student) {
+    public String addStudent(int id) {
         if(numberOfStudents == maxNumberOfStudents) {
             //Throw Custom Exception Here
         }
+        Student student = findStudentByID(id);
         for(Student classmate: studentsInCourse) {
-            if(classmate.getSTUDENT_ID() == student.getSTUDENT_ID()) {
-                return "Student is Already Enrolled in the Course";
+            if(classmate.getID() == student.getID()) {
+                return student.toString() + " is Already Enrolled in the Course";
             }
         }
-        return "Student Name: " + student.getName() + " ID " + student.getSTUDENT_ID() + " Has Been Added to The Course";
+        studentsInCourse.add(student);
+        numberOfStudents = studentsInCourse.size();
+        return student.toString() + " Has Been Added to The Course";
     }
 }

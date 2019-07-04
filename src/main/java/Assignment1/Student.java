@@ -1,17 +1,12 @@
 package Assignment1;
 
 public class Student extends Person {
-    private final int STUDENT_ID;
+
     private int creditsEarned;
     private int gradePointsEarned;
 
-    public Student(String name, int STUDENT_ID) {
-        super(name);
-        this.STUDENT_ID = STUDENT_ID;
-    }
-
-    public int getSTUDENT_ID() {
-        return STUDENT_ID;
+    public Student(String name, int id) {
+        super(name, id);
     }
 
     public int getCreditsEarned() {
@@ -35,6 +30,6 @@ public class Student extends Person {
     }
     @Override
     public boolean equals(Object student) {
-        return this.STUDENT_ID == ((Student)student).STUDENT_ID;
+        return this.getID() == ((Student)student).getID();
     }
 }
