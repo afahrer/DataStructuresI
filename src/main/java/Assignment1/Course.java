@@ -36,7 +36,7 @@ public class Course implements Serializable {
                 continue;
             }
             if(student.getID() == id) {
-                return student.toString();
+                return student.toString() + " is Emrolled in the Course";
             }
         }
         return "Student is not enrolled in the Course\n";
