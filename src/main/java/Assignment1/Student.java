@@ -25,8 +25,8 @@ public class Student extends Person {
         this.gradePointsEarned = gradePointsEarned;
     }
 
-    public int getGPA() {
-        return this.gradePointsEarned / this.creditsEarned;
+    public float getGPA() {
+        return (float)(this.gradePointsEarned) / this.creditsEarned;
     }
     @Override
     public boolean equals(Object student) {
