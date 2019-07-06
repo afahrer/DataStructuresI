@@ -26,10 +26,11 @@ public class Student extends Person {
     }
 
     public float getGPA() {
-        return (float)(this.gradePointsEarned) / this.creditsEarned;
+        return (float) (this.gradePointsEarned) / this.creditsEarned;
     }
+
     @Override
     public boolean equals(Object student) {
-        return this.getID() == ((Student)student).getID();
+        return this.getID() == ((Student) student).getID();
     }
 }
