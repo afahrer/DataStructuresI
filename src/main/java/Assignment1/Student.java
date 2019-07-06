@@ -1,7 +1,12 @@
 package Assignment1;
 
 public class Student extends Person {
-
+    /*
+        Purpose: Class that stores Students
+        Author: Adam Fahrer
+        Date: July 05, 2019
+        Input/Output: Grade points and credits earned for each student. Also extends Person
+     */
     private int creditsEarned;
     private int gradePointsEarned;
 
@@ -26,10 +31,11 @@ public class Student extends Person {
     }
 
     public float getGPA() {
-        return (float)(this.gradePointsEarned) / this.creditsEarned;
+        return (float) (this.gradePointsEarned) / this.creditsEarned;
     }
+
     @Override
     public boolean equals(Object student) {
-        return this.getID() == ((Student)student).getID();
+        return this.getID() == ((Student) student).getID();
     }
 }
