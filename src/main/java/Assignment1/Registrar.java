@@ -35,6 +35,8 @@ public class Registrar {
                     course = selectCourse();
                     student = selectStudent();
                     course.removeStudent(student);
+                case 5:
+
                 default:
                     option = 0;
             }
