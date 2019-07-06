@@ -2,6 +2,12 @@ package Assignment1;
 
 import java.io.Serializable;
 
+/*
+    Purpose: Base Class that stores all Person objects including Students and Instructors
+    Author: Adam Fahrer
+    Date: July 05, 2019
+    Input/Output: Name and ID
+ */
 public class Person implements Serializable {
     private final String name;
     private final int ID;

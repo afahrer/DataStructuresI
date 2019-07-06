@@ -1,5 +1,10 @@
 package Assignment1;
-
+/*
+    Purpose: Class that stores Course objects
+    Author: Adam Fahrer
+    Date: July 05, 2019
+    Input/Output: Course Title, Code, number of students, and classlist is stored in this object
+ */
 
 import java.io.Serializable;
 
@@ -79,6 +84,7 @@ public class Course implements Serializable {
         }
         return "Student is not enrolled in the Course\n";
     }
+
     @Override
     public String toString() {
         return "Name: " + name + "\nCode: " + courseCode;

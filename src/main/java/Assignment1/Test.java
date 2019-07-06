@@ -1,5 +1,11 @@
 package Assignment1;
 
+/*
+    Purpose: Class that is used to test the methods in the Storage Classes, Course, Student, Instructor and Person
+    Author: Adam Fahrer
+    Date: July 05, 2019
+    Input/Output: Test Data for testing the various methods in each class
+ */
 public class Test {
     public static void main(String[] args) {
         Course course = new Course("Data Structures", "COSC2006", 1);

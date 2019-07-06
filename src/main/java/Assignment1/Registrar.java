@@ -1,4 +1,16 @@
 package Assignment1;
+/*
+    Purpose: Menu system and file saving system for registrar program
+    Author: Adam Fahrer
+    Date: July 05, 2019
+    Input/Output: input from user that fills out information for courses students and
+                  instructors, this data is stored as serialized objects in a file.
+    Issue: When the class list is updated for a course a duplicate course is created in the file.
+           Not sure how to edit the serialized objects on the file.
+    Classes: Student, Instructor and Course
+    Methods: main, writeObjectToFile, createCourse, createPerson, getStudentGrades, getDepartment
+             selectCourse, selectPerson, viewObjects
+ */
 
 import java.io.*;
 import java.util.Scanner;
@@ -11,7 +23,7 @@ public class Registrar {
         Scanner scanner = new Scanner(System.in);
         int option = 0;
         Course course;
-        Person person;
+        Person person = null;
 
         do {
             System.out.println("1: Create a Course\n" +
@@ -24,7 +36,7 @@ public class Registrar {
             try {
                 option = scanner.nextInt();
                 scanner.nextLine();
-            }catch (Exception e) {
+            } catch (Exception e) {
                 option = 0;
             }
 
@@ -39,10 +51,13 @@ public class Registrar {
                     System.out.println("Course Code: ");
                     course = selectCourse(scanner.nextLine());
                     System.out.println("Student ID: ");
-                    //no try catch
-                    person = selectPerson(scanner.nextInt());
-                    scanner.nextLine();
-                    course.addStudentToCourse((Student)person);
+                    try {
+                        person = selectPerson(scanner.nextInt());
+                        scanner.nextLine();
+                    } catch (Exception e) {
+                        option = 0;
+                    }
+                    course.addStudentToCourse((Student) person);
                     writeObjectToFile(course);
                     break;
                 case 4:
@@ -59,7 +74,7 @@ public class Registrar {
                     System.out.println("Student ID: ");
                     person = selectPerson(scanner.nextInt());
                     scanner.nextLine();
-                    System.out.println(course.removeStudentFromCourse((Student)person));
+                    System.out.println(course.removeStudentFromCourse((Student) person));
                     writeObjectToFile(course);
                     break;
                 case 6:
@@ -75,16 +90,17 @@ public class Registrar {
         try {
             boolean exists = new File("data.txt").isFile();
             FileOutputStream fileOut = new FileOutputStream("data.txt", true);
+            // Resource https://stackoverflow.com/questions/22113310/write-multiple-objects-in-a-file-and-read-them?rq=1
             ObjectOutputStream objectOut = exists ?
                     new ObjectOutputStream(fileOut) {
                         protected void writeStreamHeader() throws IOException {
                             reset();
                         }
-                    }:new ObjectOutputStream(fileOut);
+                    } : new ObjectOutputStream(fileOut);
             objectOut.writeObject(serObj);
             objectOut.close();
             fileOut.close();
-            System.out.println("The Object  was successfully written to a file");
+            System.out.println("The Object has been successfully written to a file\n");
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -107,13 +123,12 @@ public class Registrar {
             System.out.println("Instructor ID: ");
             instructorID = scanner.nextInt();
             scanner.nextLine();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Invalid Selection");
             return;
         }
         Course course = new Course(name, code, max);
-        course.setCourseInstructor((Instructor)selectPerson(instructorID));
+        course.setCourseInstructor((Instructor) selectPerson(instructorID));
         writeObjectToFile(course);
     }
 
@@ -123,12 +138,11 @@ public class Registrar {
 
         String name = scanner.nextLine();
         int id;
-        try{
+        try {
             System.out.println("Person ID: ");
             id = scanner.nextInt();
             scanner.nextLine();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Invalid Selection");
             return;
         }
@@ -136,10 +150,9 @@ public class Registrar {
         System.out.println("Enter s for Student or i for Instructor");
         String selection = scanner.nextLine();
 
-        if(selection.equals("s") || selection.equals("S")) {
+        if (selection.equals("s") || selection.equals("S")) {
             person = getStudentGrades(name, id);
-        }
-        else if (selection.equals("i") || selection.equals("I")) {
+        } else if (selection.equals("i") || selection.equals("I")) {
             person = getDepartment(name, id);
         }
         writeObjectToFile(person);
@@ -148,15 +161,14 @@ public class Registrar {
     private static Student getStudentGrades(String name, int id) {
         int gradePoints;
         int credits;
-        try{
+        try {
             System.out.println("Grade Points Earned: ");
             gradePoints = scanner.nextInt();
             scanner.nextLine();
             System.out.println("Credits Earned: ");
             credits = scanner.nextInt();
             scanner.nextLine();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Invalid Selection");
             return null;
         }
@@ -181,17 +193,15 @@ public class Registrar {
         try {
             filestream = new FileInputStream(new File("data.txt"));
             ioStream = new ObjectInputStream(filestream);
-            while((courseObject = ioStream.readObject()) != null) {
+            while ((courseObject = ioStream.readObject()) != null) {
                 if (courseObject instanceof Course) {
-                    if (((Course)courseObject).getCourseCode().equals(code))
-                        return (Course)courseObject;
+                    if (((Course) courseObject).getCourseCode().equals(code))
+                        return (Course) courseObject;
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Not Found");
-        }
-        finally {
+        } finally {
             ioStream.close();
             filestream.close();
         }
@@ -206,17 +216,15 @@ public class Registrar {
         try {
             filestream = new FileInputStream(new File("data.txt"));
             ioStream = new ObjectInputStream(filestream);
-            while((personObject = ioStream.readObject()) != null) {
+            while ((personObject = ioStream.readObject()) != null) {
                 if (personObject instanceof Person) {
-                    if (((Person)personObject).getID() == id)
-                        return (Person)personObject;
+                    if (((Person) personObject).getID() == id)
+                        return (Person) personObject;
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Person Not Found");
-        }
-        finally {
+        } finally {
             ioStream.close();
             filestream.close();
         }
@@ -230,17 +238,14 @@ public class Registrar {
         try {
             filestream = new FileInputStream("data.txt");
             ioStream = new ObjectInputStream(filestream);
-            while((courseObject = ioStream.readObject()) != null) {
+            while ((courseObject = ioStream.readObject()) != null) {
                 System.out.println(courseObject + "\n");
             }
-        }
-        catch(EOFException e) {
+        } catch (EOFException e) {
             return;
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             ioStream.close();
             filestream.close();
         }
