@@ -1,15 +1,15 @@
 package Assignment1;
 /*
-    Purpose: Menu system and file saving system for registrar program
-    Author: Adam Fahrer
-    Date: July 05, 2019
+    Purpose:      Menu system and file saving system for registrar program
+    Author:       Adam Fahrer
+    Date:         July 05, 2019
     Input/Output: input from user that fills out information for courses students and
                   instructors, this data is stored as serialized objects in a file.
-    Issue: When the class list is updated for a course a duplicate course is created in the file.
-           Not sure how to edit the serialized objects on the file.
-    Classes: Student, Instructor and Course
-    Methods: main, writeObjectToFile, createCourse, createPerson, getStudentGrades, getDepartment
-             selectCourse, selectPerson, viewObjects
+    Known Issue:  When the class list is updated for a course a duplicate course is created in the file.
+                  Not sure how to edit the serialized objects on the file.
+    Classes:      Student, Instructor and Course
+    Methods:      main, writeObjectToFile, createCourse, createPerson, getStudentGrades, getDepartment
+                  selectCourse, selectPerson, viewObjects
  */
 
 import java.io.*;
