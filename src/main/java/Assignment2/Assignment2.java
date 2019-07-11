@@ -128,7 +128,7 @@ public class Assignment2 {
 
     private static void printStarsInPyramid(int stars, int spaces) {
         if (spaces <= 0) {
-            System.out.println("\nThe total number of stars is: " + countTheStars(stars) + "\n");
+            System.out.println("\nThe total number of stars is: " + countTheStars(stars-1) + "\n");
             return;
         }
         // https://stackoverflow.com/questions/2255500/can-i-multiply-strings-in-java-to-repeat-sequences

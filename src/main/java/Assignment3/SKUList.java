@@ -24,11 +24,11 @@ public class SKUList implements ADTListInterface<String> {
     public void sortedAdd(String item) throws SKUException {
         if (item.matches(REGEX_PATTERN)) {
             int index = getInsertIndex(item, 0);
-            for (int i = size-1; i > index; i--) {
-                sku[i] = sku[i+1];
+            for (int i = size; i > index; i--) {
+                sku[i] = sku[i-1];
             }
             sku[index] = item;
-            size++;` `
+            size++;
         }
         else {
             throw new SKUException("The SKU " + item + " is invalid");
@@ -36,18 +36,22 @@ public class SKUList implements ADTListInterface<String> {
     }
 
     private int getInsertIndex(String item, int letterIndex) {
-        int index;
-        for (index = 0; index < size; index++) {
-            if(item.charAt(letterIndex) < sku[index].charAt(letterIndex)) return index;
-            if(item.charAt(letterIndex) == sku[index].charAt(letterIndex)){
-                while (item.charAt(letterIndex) == sku[index].charAt(letterIndex)) {
+        int arrayIndex;
+        for (arrayIndex = 0; arrayIndex < size; arrayIndex++) {
+            if(item.charAt(letterIndex) < sku[arrayIndex].charAt(letterIndex)) return arrayIndex;
+            if(item.charAt(letterIndex) == sku[arrayIndex].charAt(letterIndex)){
+                while (item.charAt(letterIndex) == sku[arrayIndex].charAt(letterIndex) && letterIndex < 10) {
                     letterIndex++;
                 }
-                if(item.charAt(letterIndex) < sku[index].charAt(letterIndex)) return index;
-                return index+1;
+                if(item.charAt(letterIndex) < sku[arrayIndex].charAt(letterIndex)) {
+                    letterIndex = 0;
+                    return arrayIndex;
+                }
+                letterIndex = 0;
+                return arrayIndex+1;
             }
         }
-        return index;
+        return arrayIndex;
     }
 
     public void sortedRemove(String item) throws SKUException {
