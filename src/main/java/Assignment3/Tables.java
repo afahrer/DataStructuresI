@@ -2,7 +2,7 @@ package Assignment3;
 
 public class Tables {
     public static void main(String[] args) {
-        System.out.println(numberOfPlans(5));
+        System.out.println(numberOfPlans(30));
     }
     public static int numberOfPlans(int weeks) {
         if(weeks < 1) return 0;
