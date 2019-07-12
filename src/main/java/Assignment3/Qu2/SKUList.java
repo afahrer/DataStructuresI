@@ -1,4 +1,7 @@
-package Assignment3;
+package Assignment3.Qu2;
+
+import Assignment3.ADTListInterface;
+import Assignment3.SKUException;
 
 public class SKUList implements ADTListInterface<String> {
 
@@ -22,55 +25,61 @@ public class SKUList implements ADTListInterface<String> {
     }
 
     public void sortedAdd(String item) throws SKUException {
-        if (item.matches(REGEX_PATTERN)) {
+        if(size == MAX_SIZE) throw new SKUException("The list is full");
+        if (item.matches(REGEX_PATTERN) && locateIndex(item) == -1) {
             int index = getInsertIndex(item, 0);
             for (int i = size; i > index; i--) {
-                sku[i] = sku[i-1];
+                sku[i] = sku[i - 1];
             }
             sku[index] = item;
             size++;
-        }
-        else {
-            throw new SKUException("The SKU " + item + " is invalid");
+        } else {
+            throw new SKUException("The SKU " + item + " is invalid or already in use");
         }
     }
 
     private int getInsertIndex(String item, int letterIndex) {
         int arrayIndex;
         for (arrayIndex = 0; arrayIndex < size; arrayIndex++) {
-            if(item.charAt(letterIndex) < sku[arrayIndex].charAt(letterIndex)) return arrayIndex;
-            if(item.charAt(letterIndex) == sku[arrayIndex].charAt(letterIndex)){
+            if (item.charAt(letterIndex) < sku[arrayIndex].charAt(letterIndex)) return arrayIndex;
+            if (item.charAt(letterIndex) == sku[arrayIndex].charAt(letterIndex)) {
                 while (item.charAt(letterIndex) == sku[arrayIndex].charAt(letterIndex) && letterIndex < 10) {
                     letterIndex++;
                 }
-                if(item.charAt(letterIndex) < sku[arrayIndex].charAt(letterIndex)) {
-                    letterIndex = 0;
+                if (item.charAt(letterIndex) < sku[arrayIndex].charAt(letterIndex)) {
                     return arrayIndex;
                 }
                 letterIndex = 0;
-                return arrayIndex+1;
             }
         }
         return arrayIndex;
     }
 
-    public void sortedRemove(String item) throws SKUException {
-
+    public void sortedRemove(String item) {
+        int deleteIndex = locateIndex(item);
+        if ((!this.sortedIsEmpty()) && deleteIndex != -1) {
+            for (int i = deleteIndex; i < size; i++) {
+                sku[i] = sku[i + 1];
+            }
+            size--;
+        }
     }
 
     public String sortedGet(int index) {
-        return null;
+        return sku[index];
     }
 
     public int locateIndex(String item) {
-
-        return 0;
+        for (int i = 0; i < size; i++) {
+            if (sku[i].equals(item)) return i;
+        }
+        return -1;
     }
-    @Override
-    public String toString() {
+
+    public String getSortedList() {
         String items = "";
-        for(String item: sku) {
-            if(item != null) items += (item + "\n");
+        for (String item : sku) {
+            if (item != null) items += (item + "\n");
         }
         return items;
     }
