@@ -8,7 +8,11 @@ public class SKUList implements ADTListInterface<String> {
     private String[] sku = new String[25];
     private int size;
     private int MAX_SIZE = 25;
-    private static final String REGEX_PATTERN = "[A-Z][0-9]{2}-[0-9]{4}[A-Z]-[A-Z]";
+    private static final String SKU_PATTERN = "[A-Z][0-9]{2}-[0-9]{4}[A-Z]-[A-Z]";
+
+    public int getMAX_SIZE() {
+        return MAX_SIZE;
+    }
 
 
     public void createSortedList() {
@@ -33,7 +37,7 @@ public class SKUList implements ADTListInterface<String> {
             }
             sku = newSKU;
         }
-        if (item.matches(REGEX_PATTERN) && locateIndex(item) == -1) {
+        if (item.matches(SKU_PATTERN) && locateIndex(item) == -1) {
             int index = getInsertIndex(item, 0);
             for (int i = size; i > index; i--) {
                 sku[i] = sku[i - 1];
