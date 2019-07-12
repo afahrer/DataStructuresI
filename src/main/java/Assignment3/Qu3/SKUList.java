@@ -12,7 +12,7 @@ public class SKUList implements ADTListInterface<String> {
 
 
     public void createSortedList() {
-        sku = new String[MAX_SIZE];
+        sku = new String[25];
         size = 0;
     }
 

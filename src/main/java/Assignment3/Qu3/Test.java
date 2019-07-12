@@ -27,8 +27,8 @@ public class Test {
         System.out.println("List Size: " + sku.sortedSize());
         sku.sortedRemove("F98-9999X-J");
         System.out.println("List Size: " + sku.sortedSize() + "\n" + sku.getSortedList());
-        System.out.println("sku.locateIndex(\"N98-9999X-J\")" + sku.locateIndex("N98-9999X-J") +
-                           "\nsku.locateIndex(\"F98-9999X-J\")" + sku.locateIndex("F98-9999X-J"));
+        System.out.println("sku.locateIndex(\"N98-9999X-J\"): " + sku.locateIndex("N98-9999X-J") +
+                           "\nsku.locateIndex(\"F98-9999X-J\"): " + sku.locateIndex("F98-9999X-J"));
 
         sku.sortedAdd("T79-9929X-T");
         sku.sortedAdd("M78-9929X-Y");
@@ -37,7 +37,6 @@ public class Test {
         sku.sortedAdd("V79-9299X-I");
         sku.sortedAdd("V79-9259X-I");
         sku.sortedAdd("V79-9259R-U");
-
-
+        System.out.println("\nList Size: " + sku.sortedSize() + "\n" + sku.getSortedList());
     }
 }
