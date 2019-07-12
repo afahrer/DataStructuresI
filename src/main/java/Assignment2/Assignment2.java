@@ -96,8 +96,7 @@ public class Assignment2 {
         int num;
         try {
             num = scanner.nextInt();
-
-        }catch (InputMismatchException e) {
+        } catch (InputMismatchException e) {
             System.out.println("Invalid Number Provided\n");
             return 0;
         } finally {
