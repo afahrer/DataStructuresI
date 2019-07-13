@@ -1,5 +1,11 @@
 package Assignment3;
+/*
 
+    Author:     Adam Fahrer
+    Date:       July 13, 2019
+    Purpose:    Specifies the methods that are to be implemented by lists
+
+*/
 public interface ADTListInterface<T> {
     void createSortedList();
     boolean sortedIsEmpty();

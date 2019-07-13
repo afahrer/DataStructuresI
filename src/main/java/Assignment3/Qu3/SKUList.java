@@ -2,7 +2,14 @@ package Assignment3.Qu3;
 
 import Assignment3.ADTListInterface;
 import Assignment3.SKUException;
+/*
 
+    Author:     Adam Fahrer
+    Date:       July 13, 2019
+    Purpose:    To contain a list of SKU items that expands dynamically as more items are added
+    Methods:    Implements the methods of the ListInterface
+
+*/
 public class SKUList implements ADTListInterface<String> {
 
     private String[] sku = new String[25];

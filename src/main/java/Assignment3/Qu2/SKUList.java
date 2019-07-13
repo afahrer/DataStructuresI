@@ -2,6 +2,14 @@ package Assignment3.Qu2;
 
 import Assignment3.ADTListInterface;
 import Assignment3.SKUException;
+/*
+
+    Author:     Adam Fahrer
+    Date:       July 13, 2019
+    Purpose:    To contain a list of SKU items of max size 25
+    Methods:    Implements the methods of the ListInterface
+
+*/
 
 public class SKUList implements ADTListInterface<String> {
 
@@ -12,7 +20,7 @@ public class SKUList implements ADTListInterface<String> {
 
 
     public void createSortedList() {
-        sku = new String[25];
+        sku = new String[MAX_SIZE];
         size = 0;
     }
 

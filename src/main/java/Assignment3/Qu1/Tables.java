@@ -3,6 +3,15 @@ package Assignment3.Qu1;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+   /*
+
+    Author:     Adam Fahrer
+    Date:       July 13, 2019
+    Input:      User provides input for the number of weeks
+
+    Methods:    Returns number of plans available for the given weeks
+    */
+
 public class Tables {
     private static Scanner scanner = new Scanner(System.in);
 

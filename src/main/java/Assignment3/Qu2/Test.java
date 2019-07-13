@@ -1,5 +1,11 @@
 package Assignment3.Qu2;
+/*
 
+    Author:     Adam Fahrer
+    Date:       July 13, 2019
+    Purpose:    Test Program for the SKUList, adding and removing sku items
+
+*/
 public class Test {
     public static void main(String[] args) {
         SKUList sku = new SKUList();

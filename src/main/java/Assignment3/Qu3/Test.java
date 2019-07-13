@@ -1,7 +1,16 @@
 package Assignment3.Qu3;
 
 public class Test {
+    /*
 
+    Author:     Adam Fahrer
+    Date:       July 8, 2019
+    Input:      User provides input for the number of weeks
+
+    Exceptions:
+
+    Methods:
+    */
     public static void main(String[] args) {
         SKUList sku = new SKUList();
         sku.sortedAdd("P23-1499X-M");
