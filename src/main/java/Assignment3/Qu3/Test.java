@@ -4,12 +4,9 @@ public class Test {
     /*
 
     Author:     Adam Fahrer
-    Date:       July 8, 2019
-    Input:      User provides input for the number of weeks
+    Date:       July 13, 2019
+    Purpose:    Test Program for the SKUList, adding and removing sku items, resizing the array's MAX_SIZE
 
-    Exceptions:
-
-    Methods:
     */
     public static void main(String[] args) {
         SKUList sku = new SKUList();
