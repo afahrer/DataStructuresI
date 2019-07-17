@@ -1,17 +1,20 @@
 package Assignment4.Qu2;
 
-public class Person {
-    private final int SIN;
+public class Person implements Comparable<Person>{
+    private final String SIN;
+    private static final String SIN_PATTERN = "[0-9]{9}";
     private String name;
     private String address;
     private String cellNumber;
-    public Person() {
-        this(0,"Person","Someplace", "1234567890");
-    }
-    public Person(int SIN, String name, String address, String cellNumber) {
+    public Person(String SIN, String name, String address, String cellNumber) {
+        if(!SIN.matches(SIN_PATTERN)) throw new SINInvalidException("SIN is Invalid");
         this.SIN = SIN;
         this.name = name;
         this.address = address;
         this.cellNumber = cellNumber;
+    }
+
+    public int compareTo(Person o) {
+        return Integer.parseInt(this.SIN) - Integer.parseInt(o.SIN);
     }
 }

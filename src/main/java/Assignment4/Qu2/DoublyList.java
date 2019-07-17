@@ -2,8 +2,8 @@ package Assignment4.Qu2;
 
 import Assignment4.Qu1.ADTListInterface;
 
-public class DoublyList<T> implements ADTListInterface<T> {
-    private class Node<T> {
+public class DoublyList<T extends Comparable<T>> implements ADTListInterface<T> {
+    private class Node {
         private T item;
         private Node prev;
         private Node next;
@@ -20,6 +20,11 @@ public class DoublyList<T> implements ADTListInterface<T> {
 
     }
     private Node head;
+
+    public DoublyList() {
+        this.head = new Node();
+    }
+
     public boolean isEmpty(){
         return head.next == head.prev;
     }
@@ -27,12 +32,17 @@ public class DoublyList<T> implements ADTListInterface<T> {
         return 0;
     }
     public void add(T item){
+        if(isEmpty()){
+            head.next = new Node(item,head,head);
+            return;
+        }
         Node prev = head;
         Node curr = head.next;
-        while(curr != head) {
+        while(curr.item.compareTo(item) < 0) {
+            prev = curr;
             curr = curr.next;
         }
-        curr = new Node();
+        prev.next = new Node(item,curr,prev.next);
     }
     public void remove(){
 
