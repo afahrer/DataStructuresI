@@ -12,7 +12,7 @@ public class DoublyList<T extends Comparable<T>> implements ADTListInterface<T> 
             prev = this;
             next = this;
         }
-        Node(T item, Node next, Node prev) {
+        Node(T item, Node prev, Node next) {
             this.item = item;
             this.next = next;
             this.prev = prev;
@@ -26,25 +26,28 @@ public class DoublyList<T extends Comparable<T>> implements ADTListInterface<T> 
     }
 
     public boolean isEmpty(){
-        return head.next == head.prev;
+        return head.next == head;
     }
     public int size(){
         return 0;
     }
     public void add(T item){
-        if(isEmpty()){
-            head.next = new Node(item,head,head);
-            return;
-        }
-        Node prev = head;
         Node curr = head.next;
-        while(curr.item.compareTo(item) < 0) {
-            prev = curr;
+        while(curr != head && curr.item.compareTo(item) < 0) {
             curr = curr.next;
         }
-        prev.next = new Node(item,curr,prev.next);
+        Node newNode = new Node(item,curr.prev,curr);
+        curr.prev.next = newNode;
+        curr.prev = newNode;
     }
     public void remove(){
 
+    }
+    public void printList() {
+        Node curr = head.next;
+        while(curr != head) {
+            System.out.println(curr.item);
+            curr = curr.next;
+        }
     }
 }

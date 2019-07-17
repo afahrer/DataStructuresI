@@ -17,4 +17,8 @@ public class Person implements Comparable<Person>{
     public int compareTo(Person o) {
         return Integer.parseInt(this.SIN) - Integer.parseInt(o.SIN);
     }
+    @Override
+    public String toString() {
+        return this.SIN;
+    }
 }
