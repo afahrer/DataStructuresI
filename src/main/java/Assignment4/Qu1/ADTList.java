@@ -1,5 +1,12 @@
 package Assignment4.Qu1;
+/*
 
+    Author:     Adam Fahrer
+    Date:       July 17, 2019
+    Purpose:    Generic Circular linked list with dummy node used for storing SKU objects.
+                Node class contained privately within
+
+*/
 public class ADTList<T extends Comparable<T>> implements ADTListInterface<T> {
 
     private class Node {
@@ -49,7 +56,6 @@ public class ADTList<T extends Comparable<T>> implements ADTListInterface<T> {
     }
 
     public void remove()  {
-        if(isEmpty()) return;
         Node curr = head.next;
         head.next = curr.next;
     }

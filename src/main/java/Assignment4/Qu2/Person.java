@@ -1,5 +1,11 @@
 package Assignment4.Qu2;
+/*
 
+    Author:     Adam Fahrer
+    Date:       July 13, 2019
+    Purpose:    Defines Person objects and compares then based on the SIN
+
+*/
 public class Person implements Comparable<Person>{
     private final String SIN;
     private static final String SIN_PATTERN = "[0-9]{9}";

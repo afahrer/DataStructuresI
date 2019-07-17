@@ -1,7 +1,14 @@
 package Assignment4.Qu2;
 
 import Assignment4.Qu1.ADTListInterface;
+/*
 
+    Author:     Adam Fahrer
+    Date:       July 17, 2019
+    Purpose:    Generic Doubly linked list with dummy node.
+                contains a method that solves the josephus puzzle
+
+*/
 public class DoublyList<T extends Comparable<T>> implements ADTListInterface<T> {
     private class Node {
         private T item;
@@ -46,16 +53,16 @@ public class DoublyList<T extends Comparable<T>> implements ADTListInterface<T> 
             System.out.println("The item " + item + " is not unique");
             return;
         }
+        // place a new node between the current and previous node
         Node newNode = new Node(item,curr.prev,curr);
         curr.prev.next = newNode;
         curr.prev = newNode;
     }
 
-    public void remove() {
-
-    }
+    public void remove(){}
 
     public T josephus(int m) {
+        if(m < 0 || m > size()) throw new JosephusListException("Frequency is invalid");
         Node curr = head.prev;
         int index = 0;
         while(head.prev != head.next) {
@@ -68,7 +75,9 @@ public class DoublyList<T extends Comparable<T>> implements ADTListInterface<T> 
             curr.prev.next = curr.next;
             curr.next.prev = curr.prev;
         }
+        // store the result in curr variable
         curr = head.next;
+        // add the items back to the list before finishing
         for (Object node: temp) {
             if(node!= null) add(((Node)node).item);
         }

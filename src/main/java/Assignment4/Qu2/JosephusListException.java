@@ -5,8 +5,8 @@ package Assignment4.Qu2;
     Date:       July 17, 2019
 
 */
-public class SINInvalidException extends RuntimeException {
-    public SINInvalidException(String msg) {
+public class JosephusListException extends RuntimeException {
+    public JosephusListException(String msg) {
         super(msg);
     }
 }
