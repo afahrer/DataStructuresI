@@ -19,6 +19,7 @@ public class Person implements Comparable<Person>{
     }
     @Override
     public String toString() {
-        return this.SIN;
+        return "\nName: " + name +
+                "\nSIN: " + SIN;
     }
 }

@@ -7,18 +7,19 @@ public class DoublyList<T extends Comparable<T>> implements ADTListInterface<T> 
         private T item;
         private Node prev;
         private Node next;
-        Node(){
+        private Node(){
             item = null;
             prev = this;
             next = this;
         }
-        Node(T item, Node prev, Node next) {
+        private Node(T item, Node prev, Node next) {
             this.item = item;
             this.next = next;
             this.prev = prev;
         }
     }
     private Node head;
+    private Object[] temp = new Object[10];
 
     public DoublyList() {
         this.head = new Node();
@@ -28,7 +29,13 @@ public class DoublyList<T extends Comparable<T>> implements ADTListInterface<T> 
         return head.next == head;
     }
     public int size(){
-        return 0;
+        int size = 0;
+        Node curr = head.next;
+        while(curr != head) {
+            curr = curr.next;
+            size++;
+        }
+        return size;
     }
     public void add(T item){
         Node curr = head.next;
@@ -36,7 +43,7 @@ public class DoublyList<T extends Comparable<T>> implements ADTListInterface<T> 
             curr = curr.next;
         }
         if(curr != head && curr.item.compareTo(item) == 0){
-            System.out.println("SIN " + item + " is not unique");
+            System.out.println("The item " + item + " is not unique");
             return;
         }
         Node newNode = new Node(item,curr.prev,curr);
@@ -48,20 +55,24 @@ public class DoublyList<T extends Comparable<T>> implements ADTListInterface<T> 
 
     }
 
-    public void josephus(int m) {
+    public T josephus(int m) {
         Node curr = head.prev;
+        int index = 0;
         while(head.prev != head.next) {
             for (int i = 0; i < m; i++) {
-                if(curr == head) {
-                    curr = curr.next;
-                    i--;
-                    continue;
-                }
-                curr = curr.next;
+                if (curr.next == head) curr = curr.next.next;
+                else curr = curr.next;
             }
+            temp[index] = curr;
+            index++;
             curr.prev.next = curr.next;
             curr.next.prev = curr.prev;
         }
+        curr = head.next;
+        for (Object node: temp) {
+            if(node!= null) add(((Node)node).item);
+        }
+        return curr.item;
     }
     public void printList() {
         Node curr = head.next;
