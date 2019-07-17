@@ -17,7 +17,6 @@ public class DoublyList<T extends Comparable<T>> implements ADTListInterface<T> 
             this.next = next;
             this.prev = prev;
         }
-
     }
     private Node head;
 
@@ -36,12 +35,33 @@ public class DoublyList<T extends Comparable<T>> implements ADTListInterface<T> 
         while(curr != head && curr.item.compareTo(item) < 0) {
             curr = curr.next;
         }
+        if(curr != head && curr.item.compareTo(item) == 0){
+            System.out.println("SIN " + item + " is not unique");
+            return;
+        }
         Node newNode = new Node(item,curr.prev,curr);
         curr.prev.next = newNode;
         curr.prev = newNode;
     }
-    public void remove(){
 
+    public void remove() {
+
+    }
+
+    public void josephus(int m) {
+        Node curr = head.prev;
+        while(head.prev != head.next) {
+            for (int i = 0; i < m; i++) {
+                if(curr == head) {
+                    curr = curr.next;
+                    i--;
+                    continue;
+                }
+                curr = curr.next;
+            }
+            curr.prev.next = curr.next;
+            curr.next.prev = curr.prev;
+        }
     }
     public void printList() {
         Node curr = head.next;
