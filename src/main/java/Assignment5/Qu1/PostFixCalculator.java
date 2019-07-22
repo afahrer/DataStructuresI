@@ -1,10 +1,23 @@
 package Assignment5.Qu1;
 
 import java.util.StringTokenizer;
+/*
 
+    Author:     Adam Fahrer
+    Date:       July 22, 2019
+    Purpose:    Uses the ADT stack to convert an infix expression to postfix.
+    Methods:    String postFix(StringTokenizer str):
+                    converts infix to postfix
+                boolean isOperator(String item):
+                    determine whether or not the string passed is an operator
+                int precedence(String oper):
+                    determines the order in which operations take place by returning an
+                    integer based on the operator provided
+*/
 public class PostFixCalculator {
 
     public static ADTList stack;
+
     private static String[] operators = {"+", "-", "*", "^", "%", "/"};
 
     public static void main(String[] args) {
@@ -31,7 +44,7 @@ public class PostFixCalculator {
             }
             if (isOperator(item)) {
                 while ((!stack.isEmpty()) && (!stack.peek().equals("("))
-                        && (precedance(item) <= precedance((String) stack.peek()))) {
+                        && (precedence(item) <= precedence((String) stack.peek()))) {
                     postfixExp = postfixExp + stack.pop();
                 }
                 stack.push(item);
@@ -56,8 +69,7 @@ public class PostFixCalculator {
         return false;
     }
 
-    public static int precedance(String oper) {
-        if (stack.isEmpty()) return 0;
+    public static int precedence(String oper) {
         if (oper.equals("^")) return 3;
         if (oper.equals("*") || oper.equals("/") || oper.equals("%")) return 2;
         return 1;

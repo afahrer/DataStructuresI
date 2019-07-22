@@ -1,6 +1,11 @@
 package Assignment5.Qu2;
+/*
 
-public class Queue<T> implements QueueInterface<T>, Cloneable {
+    Author:     Adam Fahrer
+    Date:       July 22, 2019
+    Purpose:    Generic queue implementation using a circular linked list
+*/
+public class Queue<T> implements QueueInterface<T> {
     private Node lastNode;
 
     private class Node {
@@ -23,30 +28,23 @@ public class Queue<T> implements QueueInterface<T>, Cloneable {
     }
 
     public void enqueue(T item) {
+        Node newNode = new Node(item, null);
         if (isEmpty()) {
-            lastNode = new Node(item, null);
-            lastNode.next = lastNode;
+            newNode.next = newNode;
         }
         else {
-            lastNode.next = new Node(item, lastNode.next);
+            newNode.next = lastNode.next;
+            lastNode.next = newNode;
         }
+        lastNode = newNode;
     }
 
-    public T dequeue() throws QueueException {
+    public T dequeue() {
         if (isEmpty()) throw new QueueException("Queue is empty");
-        if(lastNode.next == lastNode) {
-            T item = lastNode.item;
-            lastNode = null;
-            return item;
-        }
-        T item = lastNode.item;
-        Node curr = lastNode;
-        while (curr.next != lastNode) {
-            curr = curr.next;
-        }
-        curr.next = lastNode.next;
-        lastNode = curr;
-        return item;
+        Node firstNode = lastNode.next;
+        if(firstNode == lastNode) lastNode = null;
+        else lastNode.next = firstNode.next;
+        return firstNode.item;
     }
 
     public void dequeueAll() {
@@ -54,10 +52,7 @@ public class Queue<T> implements QueueInterface<T>, Cloneable {
     }
 
     public T peek() {
-        if(isEmpty()) return null;
+        if(isEmpty()) throw new QueueException("Queue is empty");
         return lastNode.item;
-    }
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
     }
 }

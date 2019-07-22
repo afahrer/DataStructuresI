@@ -1,5 +1,11 @@
 package Assignment5.Qu1;
+/*
 
+    Author:     Adam Fahrer
+    Date:       July 22, 2019
+    Purpose:    Generic Stack implementation using an array
+
+*/
 public class ADTList<T extends Comparable<T>> {
     private Object[] list;
     private static final int MAX_SIZE = 50;

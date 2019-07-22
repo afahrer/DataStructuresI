@@ -1,96 +1,91 @@
 package Assignment5.Qu2;
+/*
 
+    Author:     Adam Fahrer
+    Date:       July 22, 2019
+    Purpose:    Tests the methods of the Queue class and contains methods that
+                perform different operations using the queue
+*/
 public class Test {
-    private static Queue queue;
+
+    private static Queue<Integer> queue;
+
     public static void main(String[] args) {
         queue = new Queue();
         for (int i = 0; i < 15; i++) {
             queue.enqueue(i);
         }
-        displayQueue(queue);
-        System.out.println("\nCount: " +countQueuedItems(queue));
-        System.out.println("Sum: " + sumQueuedItems(queue));
-        System.out.println("Max: " + maxQueuedItem(queue));
-        System.out.println("Min: " + minQueuedItem(queue));
+
+        displayQueue();
+        System.out.println("\nCount: " +countQueuedItems());
+        System.out.println("Sum: " + sumQueuedItems());
+        System.out.println("Max: " + maxQueuedItem());
+        System.out.println("Min: " + minQueuedItem());
     }
 
-    public static void displayQueue(Queue queue) {
-        Queue temp = null;
-        try {
-            temp = (Queue)queue.clone();
+    public static void displayQueue() {
+        Integer last = queue.dequeue();
+        System.out.println(last);
+        queue.enqueue(last);
+        Integer item;
+        while ((item = queue.dequeue()) != last) {
+            System.out.println(item);
+            queue.enqueue(item);
         }
-        catch(CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        while (!temp.isEmpty()) {
-            System.out.println(temp.dequeue());
-        }
+        queue.enqueue(last);
     }
 
-    public static int countQueuedItems(Queue queue) {
-        Queue temp = null;
-        try {
-            temp = (Queue)queue.clone();
-        }
-        catch(CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        int count = 0;
-
-        while (!temp.isEmpty()) {
-            temp.dequeue();
+    public static int countQueuedItems() {
+        Integer last = queue.dequeue();
+        queue.enqueue(last);
+        int count = 1;
+        Integer item;
+        while ((item = queue.dequeue()) != last) {
+            queue.enqueue(item);
             count++;
         }
-
+        queue.enqueue(last);
         return count;
     }
 
-    public static int sumQueuedItems(Queue queue) {
-        Queue temp = null;
-        try {
-            temp = (Queue)queue.clone();
+    public static int sumQueuedItems() {
+        Integer last = queue.dequeue();
+        queue.enqueue(last);
+        int sum = last;
+        Integer item;
+        while ((item = queue.dequeue()) != last) {
+            sum += item;
+            queue.enqueue(item);
         }
-        catch(CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        int sum = 0;
-        while (!temp.isEmpty()) {
-            sum += (Integer)temp.dequeue();
-        }
+        queue.enqueue(last);
         return sum;
     }
 
-    public static int maxQueuedItem(Queue queue) {
-        Queue temp = null;
-        int item = 0;
-        try {
-            temp = (Queue)queue.clone();
+    public static int maxQueuedItem() {
+        Integer last = queue.dequeue();
+        queue.enqueue(last);
+        int max = last;
+        Integer item;
+        while ((item = queue.dequeue()) != last) {
+            if(item > max)
+                max = item;
+            queue.enqueue(item);
         }
-        catch(CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        int max = 0;
-        while (!temp.isEmpty()) {
-            item = (Integer)temp.dequeue();
-            if(item > max) max = item;
-        }
-        return item;
+        queue.enqueue(last);
+        return max;
     }
 
-    public static int minQueuedItem(Queue queue) {
-        Queue temp = null;
-        int item = 0;
-        try {
-            temp = (Queue)queue.clone();
+    public static int minQueuedItem() {
+        Integer last = queue.dequeue();
+        queue.enqueue(last);
+        int min = last;
+        Integer item;
+        while ((item = queue.dequeue()) != last) {
+            if(item < min)
+                min = item;
+            queue.enqueue(item);
         }
-        catch(CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        int min = 0;
-        while (!temp.isEmpty()) {
-            item = (Integer)temp.dequeue();
-            if(item < min) min = item;
-        }
-        return item;
+        queue.enqueue(last);
+        return min;
     }
 }
