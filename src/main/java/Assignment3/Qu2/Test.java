@@ -3,7 +3,7 @@ package Assignment3.Qu2;
 
     Author:     Adam Fahrer
     Date:       July 13, 2019
-    Purpose:    Test Program for the SKUList, adding and removing sku items
+    Purpose:    PostFixCalculator Program for the SKUList, adding and removing sku items
 
 */
 public class Test {

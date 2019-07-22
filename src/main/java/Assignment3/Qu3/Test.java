@@ -5,7 +5,7 @@ public class Test {
 
     Author:     Adam Fahrer
     Date:       July 13, 2019
-    Purpose:    Test Program for the SKUList, adding and removing sku items, resizing the array's MAX_SIZE
+    Purpose:    PostFixCalculator Program for the SKUList, adding and removing sku items, resizing the array's MAX_SIZE
 
     */
     public static void main(String[] args) {

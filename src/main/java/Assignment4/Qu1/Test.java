@@ -3,7 +3,7 @@ package Assignment4.Qu1;
 
     Author:     Adam Fahrer
     Date:       July 17, 2019
-    Purpose:    Test program for ADTList that adds 400 items then removes 385 items to
+    Purpose:    PostFixCalculator program for ADTList that adds 400 items then removes 385 items to
                 demonstrate the expandability of the linked list
 
 */
