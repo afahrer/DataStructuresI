@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Lab4;
+package Lab04;
 
 import java.util.Scanner;
-import static Lab4.CreditCard.validate;
+import static Lab04.CreditCard.validate;
 
 /**
  *

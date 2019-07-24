@@ -3,26 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Lab6;
+package Lab09;
 
 /**
  *
  * @author afahrer
  */
-public class Test {
+public class Lab9 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
-        list.addFirst("Hello");
-        list.addFirst("world");  
-        list.addFirst("Java");
-        list.deleteFirst();
-        list.deleteLast();
-        list.addLast("Last");
-        list.printList();
-    }
-    
+        Queue queue = new Queue();
+        for (int i = 0; i < 9; i++) {
+            queue.enqueue(i);
+        }
+        for (int i = 0; i < 9; i++) {
+            System.out.println(queue.dequeue());
+        }
+        queue.enqueue(55);
+        System.out.println(queue.dequeue());
+    }   
 }
