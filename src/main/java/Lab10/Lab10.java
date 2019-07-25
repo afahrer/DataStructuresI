@@ -5,7 +5,7 @@ import java.util.Random;
 public class Lab10 {
 
     public static void main(String[] args) {
-	    Integer[] arr = new Integer[10000];
+	    Integer[] arr = new Integer[10];
 	    Random rand = new Random();
         for (int i = 0; i < arr.length; i++) {
             arr[i] = rand.nextInt(50000 + 50000) - 50000;

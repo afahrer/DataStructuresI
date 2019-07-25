@@ -22,7 +22,7 @@ public class PostFixCalculator {
 
     public static void main(String[] args) {
         stack = new ADTList();
-        String infix = "2 / ( 3  + 76 ) - 6 ^ 3 * 2 % 3";
+        String infix = "( 10 + 90 ) * 6 / 60 + 7 ";
         StringTokenizer tokenizer = new StringTokenizer(infix);
         System.out.println("Infix: " + infix + "\nPostfix: " + postFix(tokenizer));
     }
