@@ -27,6 +27,7 @@ public class Lab10 {
         quicksort(arr, ++pivot, last);
     }
     public static int partition(Integer[] arr, int first, int last) {
+        swap(arr,first,(first+last)/2);
         int pivot = first;
         int u = first + 1;
         int low = first;

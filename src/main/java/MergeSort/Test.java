@@ -3,21 +3,27 @@ package MergeSort;
 import java.util.Random;
 
 public class Test {
+
     public static void main(String[] args) {
         Random rand = new Random();
-        int[] arr = new int[30];
+        int[] arr = new int[10];
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = rand.nextInt(50);
+            arr[i] = rand.nextInt(50) - 25;
         }
-        System.out.println("Before Sort");
+
+        System.out.print("Unsorted:\n\t[ ");
         for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
+            System.out.print(arr[i] + " ");
         }
+        System.out.print("]");
+
         mergeSort(arr);
-        System.out.println("After Sort");
+
+        System.out.print("\nSorted:\n\t[ ");
         for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
+            System.out.print(arr[i] + " ");
         }
+        System.out.print("]");
     }
 
     private static void mergeSort(int[] arr) {
@@ -37,20 +43,20 @@ public class Test {
         int currPos = 0;
 
         while (left < mid && right < last) {
-            if (arr[left] < arr[right]) temp[currPos] = arr[left++];
+            if (arr[left] < arr[right]) temp[currPos++] = arr[left++];
             else temp[currPos++] = arr[right++];
         }
 
-        while (left > mid) {
+        while (left < mid) {
             temp[currPos++] = arr[left++];
         }
 
-        while (right > last) {
+        while (right < last) {
             temp[currPos++] = arr[right++];
         }
 
         for (int i = 0; i < temp.length; i++) {
-            arr[first + 1] = temp[i];
+            arr[first++] = temp[i];
         }
     }
 }
